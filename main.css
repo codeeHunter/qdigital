@@ -1,0 +1,233 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-family: 'Comfortaa';
+    font-weight: 600;
+}
+
+li {
+    font-family: 'Roboto';
+    font-weight: 400;
+    font-size: 13px;
+}
+
+h4 {
+    font-family: 'Roboto';
+    font-weight: 700;
+    line-height: 0px;
+    margin-top: 15px;
+}
+
+h1 {
+    font-size: 36px;
+    line-height: 40px;
+}
+
+button {
+    text-transform: uppercase;
+    font-weight: bold;
+    line-height: 15px;
+    font-size: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: 0.04em;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+button, input::placeholder {
+    font-family: 'Roboto';
+}
+
+input::placeholder {
+    font-size: 15px;
+    color: black;
+}
+
+main {
+    width: 86%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+    text-align:left;
+}
+
+.taskName {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.taskNameInput {
+    width: 97.5%;
+}
+
+.task {
+    background: #FFFFFF;
+    border: 2px solid #000000;
+    padding: 15px 0px 15px 17px;
+    line-height: 18px;
+}
+
+.subTasks {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.blackButton {
+    background: #000;
+    border: none;
+}
+
+.addSubtasks {
+    width: 70px;
+    height: 40px;
+}
+
+.subTasks button {
+    margin-left: 20px;
+}
+
+.addSubtasks i {
+    color: white;
+}
+
+.taskDescription {
+    width: 100%;
+    display: flex;
+}
+
+.taskDesc, .taskTime, .taskButton {
+    display: flex;
+    justify-content: center;
+}
+
+.taskDesc {
+    width: 100%;
+    padding-left: 12px;
+}
+
+.taskTime {
+    width: 35%;
+}
+
+.taskButton {
+    padding-left: 13px;
+    padding-right: 10px;
+}
+
+.newTask, .oldTask {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.description {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-left: 12px;
+}
+
+.time {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.oldTasksInput {
+    width: 100%;
+}
+
+.subTasksTime {
+    width: 40%;
+}
+
+.clearButton {
+    background: white;
+    border: 2px solid #000000;
+}
+
+.clearButton i {
+    transform: rotate(45deg);
+    color: black;
+}
+
+.saveTask, .createTask  {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.saveTask button {
+    width: 100%;
+    padding: 18px;
+}
+
+.createTask button, .saveTask button {
+    width: 100%;
+    padding: 18px;
+    border-radius: 6px;
+}
+
+.createTask button {
+    color: White;
+    background: #000;
+}
+
+.taskList {
+    margin-top: 20px;
+}
+
+.taskItem {
+    margin-bottom: 20px;
+    width: 100%;
+    display: flex;
+    padding-bottom: 19px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.taskNameList {
+    width: 50%;
+}
+
+.taskLogo {
+    display: flex;
+    justify-content: center;
+    margin-right: 20px;
+    width: 110px;
+    height: 64px;
+    border-radius: 50%;
+    background: #000;
+}
+
+.taskNameList ul {
+    padding: 0;
+    margin-left: 20px;
+}
+
+.load {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-self: flex-end;
+}
+
+.loadButton {
+    padding: 7px 49px;
+    border-radius: 6px;
+}
+
