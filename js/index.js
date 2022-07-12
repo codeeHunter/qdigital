@@ -8,10 +8,13 @@ const taskDecription = document.querySelectorAll(".description input");
 const saveLocal = document.getElementById("saveLocal");
 
 let subTasks = [];
-
 let tasks = [];
 
-let magicIndex = 0;
+function setId() {
+  return Math.floor(Math.random() * 9999999999);
+}
+
+let magicIndex = setId();
 
 function SubTask(id, description, time) {
   this.id = id;
@@ -19,10 +22,9 @@ function SubTask(id, description, time) {
   this.time = time;
 }
 
-function Task(name, description, time) {
+function Task(id, name) {
+  this.id = id;
   this.name = name;
-  this.description = description;
-  this.time = time;
   this.subTasks = [];
 }
 
@@ -72,9 +74,9 @@ const onChange = (id, name) => {
 
 const createList = (task) => {
   return `
-    <div class="taskItem">
+    <div class="taskItem id=${task.id}">
     <div class="taskLogo"></div>
-    <div class="taskNameList">
+    <div class="taskNameList" >
         <h4>${task.name}</h4>
         <ul>
             ${renderItems(task.subTasks)}
@@ -89,20 +91,13 @@ const createList = (task) => {
 
 const renderItems = (items) => {
   return items
-    .map((item) => `<li>${item.description} - ${item.time}</li>`)
+    .map((item) => `<li>${item.description} - ${item.time}h</li>`)
     .join("");
 };
 
 const deleteSubTask = (id) => {
   subTasks = subTasks.filter((item) => item.id !== id);
   addSubTask();
-};
-
-const deleteAllSubTask = (index) => {
-  while (subTasks.length > 0) {
-    subTasks.splice(index, 1);
-    addSubTask();
-  }
 };
 
 const addSubTask = () => {
@@ -121,48 +116,107 @@ const fillTask = () => {
   }
 };
 
+let iterator = 0;
+let k = 0;
 const loadLocal = () => {
+  let newArr = [];
+  let ic = 0;
   todoList = JSON.parse(localStorage.getItem("tasks"));
+  if (k != 2) {
+    k = 2;
+    for (const obj of todoList) {
+      for (let i = 0; i < tasks.length; i++) {
+        if (obj.id !== tasks[i].id) {
+          const task = new Task(obj.id, obj.name);
+          task.subTasks = obj.subTasks;
+          newArr.push(task);
+        }
+      }
+    }
+    if (iterator == 1) {
+      for (let i = newArr.length - iterator; i >= 0; i--) {
+        tasks.push(newArr[i]);
+      }
+    } else if (iterator > 1) {
+      for (let i = newArr.length - iterator - 1; i >= 0; i--) {
+        tasks.push(newArr[i]);
+      }
+    } else {
+      alert("Данных в localStorage нет");
+    }
 
-  for (const obj of todoList) {
-    const task = new Task(obj.name);
-    task.subTasks = obj.subTasks;
-    tasks.push(task);
-    tasks.reverse();
     subTasks = [];
+    subTasks.push(new SubTask(magicIndex, "", ""));
+    addSubTask();
+    fillTask();
+  } else {
+    alert("Все данные выведены.");
   }
-  addSubTask();
-  fillTask();
+  console.log(tasks);
 };
 
-const saveLocalStorage = () => {
-  localStorage.setItem("tasks", JSON.stringify(tasks));
-};
+let p = 0;
+let t = 0;
 
 saveLocal.addEventListener("click", () => {
-  saveLocalStorage();
+  let todo = JSON.parse(localStorage.getItem("tasks"));
+  let todoList = todo;
+  console.log(todo);
+  if (taskName.value !== "") {
+    const task = new Task(setId(), taskName.value);
+    task.subTasks = subTasks;
+    tasks.push(task);
+    tasks.reverse();
+    fillTask();
+    taskName.value = "";
+    subTasks = [];
+    subTasks.push(new SubTask(magicIndex, "", ""));
+    addSubTask();
+  } else {
+    alert("Введите имя задачи!");
+  }
+  iterator++;
+  if (todo === null) {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  } else {
+    for (let i = todoList.length - 1; i <= todoList.length; i++) {
+      for (let j = 0; j < tasks.length; j++) {
+        if (tasks[j].id !== todoList[i].id) {
+          todoList.push(tasks[j]);
+        }
+      }
+      break;
+    }
+    if (todoList === todo) {
+      localStorage.setItem("tasks", JSON.stringify(todoList));
+    }
+  }
 });
 
 subTask.addEventListener("click", () => {
-  magicIndex++;
   subTasks.push(new SubTask(magicIndex, "", ""));
   addSubTask();
 });
 
 addTask.addEventListener("click", () => {
-  const task = new Task(taskName.value);
-  task.subTasks = subTasks;
-  magicIndex = 0;
-  tasks.push(task);
-  tasks.reverse();
-  fillTask();
-  taskName.value = "";
-  subTasks = [];
-  addSubTask();
+  k++;
+  iterator++;
+  if (taskName.value !== "") {
+    const task = new Task(setId(), taskName.value);
+    task.subTasks = subTasks;
+    tasks.push(task);
+    tasks.reverse();
+    fillTask();
+    taskName.value = "";
+    subTasks = [];
+    subTasks.push(new SubTask(magicIndex, "", ""));
+    addSubTask();
+  } else {
+    alert("Введите имя задачи!");
+  }
 });
 
 window.onload = () => {
-  magicIndex++;
   subTasks.push(new SubTask(magicIndex, "", ""));
   addSubTask();
 };

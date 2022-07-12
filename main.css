@@ -58,18 +58,21 @@ main {
 }
 
 .taskName {
+    position: relative;
     margin-top: 20px;
     width: 100%;
 }
 
 .taskNameInput {
-    width: 97.5%;
+    width: 100%;
 }
 
 .task {
+    box-sizing: border-box;
     background: #FFFFFF;
     border: 2px solid #000000;
-    padding: 15px 0px 15px 17px;
+    margin: 0;
+    padding: 19px 0px 17px 17px;
     line-height: 18px;
 }
 
@@ -90,7 +93,7 @@ main {
 }
 
 .subTasks button {
-    margin-left: 20px;
+    margin-left: 25px;
 }
 
 .addSubtasks i {
@@ -133,7 +136,6 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-left: 12px;
 }
 
 .time {
