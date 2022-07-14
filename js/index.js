@@ -22,8 +22,7 @@ function SubTask(id, description, time) {
   this.time = time;
 }
 
-function Task(id, visible, name) {
-  this.id = id;
+function Task(visible, name) {
   this.visible = visible;
   this.name = name;
   this.subTasks = [];
@@ -75,7 +74,7 @@ const onChange = (id, name) => {
 
 const createList = (task) => {
   return `
-    <div class="taskItem id=${task.id}">
+    <div class="taskItem">
       <div class="taskLogo"></div>
       <div class="taskNameList" >
         <h4>${task.name}</h4>
@@ -131,7 +130,9 @@ const loadLocal = () => {
   }
   localStorage.setItem("tasks", JSON.stringify(todoList));
   newTodo.map((i) => tasks.push(i));
-
+  if (newTodo.length == 0) {
+    alert("Все данные из LocalStorage загружены...");
+  }
   subTasks = [];
   subTasks.push(new SubTask(magicIndex, "", ""));
   addSubTask();
@@ -149,7 +150,7 @@ function uniqBy(a, key) {
 
 saveLocal.addEventListener("click", () => {
   if (taskName.value !== "") {
-    const task = new Task(setId(), true, taskName.value);
+    const task = new Task(true, taskName.value);
     task.subTasks = subTasks;
     tasks.push(task);
     tasks.reverse();
@@ -184,7 +185,7 @@ subTask.addEventListener("click", () => {
 
 addTask.addEventListener("click", () => {
   if (taskName.value !== "") {
-    const task = new Task(setId(), true, taskName.value);
+    const task = new Task(true, taskName.value);
     task.subTasks = subTasks;
     tasks.push(task);
     tasks.reverse();
