@@ -92,13 +92,26 @@ main {
     height: 40px;
 }
 
+
 .subTasks button {
     margin-left: 25px;
 }
 
 .addSubtasks i {
     color: white;
+    transition: 0.3s all;
 }
+.addSubtasks i:hover {
+    transform:rotate(45deg); 
+}
+
+.animationButton i {
+    transition: 0.3s all;
+}
+.animationButton i:hover {
+    transform:rotate(45deg); 
+}
+
 
 .taskDescription {
     width: 100%;
